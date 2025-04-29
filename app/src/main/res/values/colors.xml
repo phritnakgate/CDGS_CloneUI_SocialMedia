@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primaryColor">#FF00699D</color>
+    <color name="secondaryColor">#FF3FA3F5</color>
+    <color name="bgColor">#FFFEF7FF</color>
+    <color name="signInBtnColor">#FF222E97</color>
+    <color name="disabledColor">#FF9E9E9E</color>
+    <color name="signInGradient1">#FFF44635</color>
+    <color name="signInGradient2">#FFFEA240</color>
+    <color name="rippleColor">#4EB7D0D1</color>
 </resources>
