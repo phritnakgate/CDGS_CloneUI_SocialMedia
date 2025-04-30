@@ -41,18 +41,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Handle Social Media Buttons
-        val facebookButton = findViewById<ConstraintLayout>(R.id.login_facebookBtn)
-        facebookButton.findViewById<ImageView>(R.id.login_social_btn_pic).setImageResource(R.drawable.facebook_logo)
+        val facebookButton = findViewById<ConstraintLayout>(R.id.login_facebook_btn)
         facebookButton.setOnClickListener {
             Log.d("Facebook Button", "Clicked")
         }
-        val googleButton = findViewById<ConstraintLayout>(R.id.login_googleBtn)
-        googleButton.findViewById<ImageView>(R.id.login_social_btn_pic).setImageResource(R.drawable.google_logo)
+        val googleButton = findViewById<ConstraintLayout>(R.id.login_google_btn)
         googleButton.setOnClickListener {
             Log.d("Google Button", "Clicked")
         }
-        val xButton = findViewById<ConstraintLayout>(R.id.login_xBtn)
-        xButton.findViewById<ImageView>(R.id.login_social_btn_pic).setImageResource(R.drawable.x_logo)
+        val xButton = findViewById<ConstraintLayout>(R.id.login_x_btn)
         xButton.setOnClickListener {
             Log.d("X Button", "Clicked")
         }

@@ -1,4 +1,5 @@
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/black">
+    android:color="@color/rippleColor2">
     <item android:drawable="@drawable/login_form_border" />
+
 </ripple>
