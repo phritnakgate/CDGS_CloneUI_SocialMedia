@@ -1,18 +1,11 @@
 package com.example.cloneui_socialmedia
 
-import android.graphics.LinearGradient
-import android.graphics.Shader
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet.Constraint
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,48 +13,54 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        //Title Gradient
-        val appTitle = findViewById<TextView>(R.id.login_title)
-        val titleWidth = appTitle.paint.measureText(appTitle.text.toString())
-        val titleShader = LinearGradient(
-            0f,0f,titleWidth,appTitle.textSize,
-            intArrayOf(
-                ContextCompat.getColor(this, R.color.signInGradient1),
-                ContextCompat.getColor(this, R.color.signInGradient2),
-            ),
-            null,
-            Shader.TileMode.CLAMP
-        )
-        appTitle.paint.shader = titleShader
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, HomeFragmentActivity())
+            .commit()
 
-        //Handle Login Button
-        val loginButton = findViewById<ConstraintLayout>(R.id.login_signInBtn)
-        loginButton.setOnClickListener {
-            Log.d("Login Button", "Clicked")
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavBar)
+        bottomNav.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.nav_home -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, HomeFragmentActivity())
+                        .commit()
+                    true
+                }
+                R.id.nav_explore -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, ExploreFragmentActivity())
+                        .commit()
+                    true
+                }
+                R.id.nav_add -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, AddFragmentActivity())
+                        .commit()
+                    true
+                }
+                R.id.nav_archive -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, ArchiveFragmentActivity())
+                        .commit()
+                    true
+                }
+                R.id.nav_profile -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, ProfileFragmentActivity())
+                        .commit()
+                    true
+                }
+                else -> false
+            }
         }
 
-        //Handle Social Media Buttons
-        val facebookButton = findViewById<ConstraintLayout>(R.id.login_facebook_btn)
-        facebookButton.setOnClickListener {
-            Log.d("Facebook Button", "Clicked")
-        }
-        val googleButton = findViewById<ConstraintLayout>(R.id.login_google_btn)
-        googleButton.setOnClickListener {
-            Log.d("Google Button", "Clicked")
-        }
-        val xButton = findViewById<ConstraintLayout>(R.id.login_x_btn)
-        xButton.setOnClickListener {
-            Log.d("X Button", "Clicked")
-        }
-        //Handle Signup
-        val signUpButton = findViewById<TextView>(R.id.login_signUpBtn)
-        signUpButton.setOnClickListener {
-            Log.d("Sign Up Button", "Clicked")
-        }
+        val notiBadge = bottomNav.getOrCreateBadge(R.id.nav_archive)
+        notiBadge.isVisible = true
+        notiBadge.number = 4
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, 0, systemBars.right, 0)
             insets
         }
     }
