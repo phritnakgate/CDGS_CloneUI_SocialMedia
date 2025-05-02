@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
     <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/profile_divUnderTabAbout"
+        android:id="@+id/home_divUnderstoryBar"
         android:layout_width="0dp"
         android:layout_height="2dp"
         app:dividerColor="@color/disabledColorA30"
@@ -47,8 +47,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
     <!-- End Story Bar -->
-
-
+    <!-- Posts -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/home_posts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/home_divUnderstoryBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <!-- End Posts -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

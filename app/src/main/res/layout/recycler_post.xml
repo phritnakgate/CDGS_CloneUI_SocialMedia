@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/home_postProfileImg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:background="@drawable/story_shape"
+        android:clipToOutline="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <LinearLayout
+        android:id="@+id/home_postUserDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@+id/home_postProfileImg"
+        app:layout_constraintBottom_toTopOf="@+id/home_postTopGuideline"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/userId"
+                android:textColor="@color/disabledColor"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="89 days ago"
+            android:textColor="@color/disabledColor"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:srcCompat="@drawable/threedots"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/home_postTopGuideline"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/home_postTopGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="60dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/home_postImg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_launcher_background"
+        android:background="@drawable/post_img_border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_postTopGuideline"
+        />
+    <TextView
+        android:id="@+id/home_postDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="long text long text long text long text long text long text long text long text long text long text long text long text long text"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/home_postImg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="15dp"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/home_postDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <LinearLayout
+            android:id="@+id/home_postComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/home_postCommentIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:tint="@color/disabledColor"
+                app:srcCompat="@drawable/post_comment" />
+            <TextView
+                android:id="@+id/home_postCommentCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="0"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/home_postLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/home_postLikeIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:tint="@color/disabledColor"
+                app:srcCompat="@drawable/post_like" />
+            <TextView
+                android:id="@+id/home_postLikeCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="0"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/home_postBookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/home_postBookmarkIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:tint="@color/disabledColor"
+                app:srcCompat="@drawable/post_bookmark" />
+            <TextView
+                android:id="@+id/home_postBookmarkCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="0"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/home_postShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/home_postShareIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:tint="@color/disabledColor"
+                app:srcCompat="@drawable/post_share" />
+            <TextView
+                android:id="@+id/home_postShareCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="0"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flow_horizontalStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:constraint_referenced_ids="home_postComment, home_postLike, home_postBookmark, home_postShare"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+        </androidx.constraintlayout.helper.widget.Flow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
