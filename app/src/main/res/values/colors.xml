@@ -3,7 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primaryColor">#FF00699D</color>
+    <color name="primaryColorA30">#4C00699D</color>
     <color name="secondaryColor">#FF3FA3F5</color>
+    <color name="secondaryColorA30">#4D3FA3F5</color>
     <color name="bgColor">#FFFEF7FF</color>
     <color name="signInBtnColor">#FF222E97</color>
     <color name="disabledColor">#FF9E9E9E</color>
