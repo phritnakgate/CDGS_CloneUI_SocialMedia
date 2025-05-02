@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDivider
@@ -79,6 +81,11 @@ class ProfileFragmentActivity : Fragment(R.layout.fragment_profile) {
                 .replace(R.id.profile_postAboutFragment, AboutFragmentActivity())
                 .commit()
             highlightTab(false)
+        }
+        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.profile_layout)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, 0, systemBars.right, 0)
+            insets
         }
     }
 }

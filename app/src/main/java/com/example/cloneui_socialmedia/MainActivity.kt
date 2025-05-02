@@ -57,11 +57,5 @@ class MainActivity : AppCompatActivity() {
         val notiBadge = bottomNav.getOrCreateBadge(R.id.nav_archive)
         notiBadge.isVisible = true
         notiBadge.number = 4
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, 0, systemBars.right, 0)
-            insets
-        }
     }
 }
