@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Qiyorie</string>
+    <string name="userId">@johnDoe1213</string>
 </resources>
