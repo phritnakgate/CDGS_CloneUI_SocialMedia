@@ -57,6 +57,7 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/home_openDrawerBtn"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:clickable="true"

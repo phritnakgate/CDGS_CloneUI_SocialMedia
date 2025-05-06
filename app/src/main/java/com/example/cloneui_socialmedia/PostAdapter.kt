@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -36,6 +37,7 @@ class PostAdapter(private var itemLists : MutableList<PostData>) : RecyclerView.
         val postBookmarks : TextView? = itemView.findViewById(R.id.home_postBookmarkCount)
         val postBookmarkIcon : AppCompatImageView? = itemView.findViewById(R.id.home_postBookmarkIcon)
         val postBookmarkBtn : ConstraintLayout? = itemView.findViewById(R.id.home_postBookmarkButton)
+        val openDrawerBtn : ConstraintLayout? = itemView.findViewById(R.id.home_openDrawerBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostAdapter.ViewHolder {
@@ -108,6 +110,14 @@ class PostAdapter(private var itemLists : MutableList<PostData>) : RecyclerView.
                 holder.postBookmarkIcon?.setImageResource(R.drawable.post_bookmark)
             }
             holder.postBookmarks?.text = item.postBookmark.toString()
+        }
+
+        //Handle BottomDrawer
+        val bottomSheet = BottomSheetDialog(holder.itemView.context)
+        val bottomSheetView = LayoutInflater.from(holder.itemView.context).inflate(R.layout.post_bottomsheet, null)
+        holder.openDrawerBtn?.setOnClickListener {
+            bottomSheet.setContentView(bottomSheetView)
+            bottomSheet.show()
         }
     }
 

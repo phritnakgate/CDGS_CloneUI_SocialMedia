@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Qiyorie</string>
     <string name="userId">@johnDoe1213</string>
+
+    <!-- Post Drawer -->
+    <string name="post_drawer_bookmark">บันทึก</string>
+    <string name="post_drawer_qr">คิวอาร์โค้ด</string>
+    <string name="post_drawer_share">แชร์</string>
+    <string name="post_drawer_fav">เพิ่มในรายการโปรด</string>
+    <string name="post_drawer_unfollow">เลิกติดตาม</string>
+    <string name="post_drawer_whyYouSeeThis">ทำไมคุณจึงเห็นโพสต์นี้</string>
+    <string name="post_drawer_hide">ซ่อน</string>
+    <string name="post_drawer_aboutThisUser">เกี่ยวกับบัญชีนี้</string>
+    <string name="post_drawer_report">รายงาน</string>
 </resources>
