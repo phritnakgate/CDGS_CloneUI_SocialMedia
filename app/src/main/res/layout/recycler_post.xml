@@ -7,11 +7,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/home_postProfileImg"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:background="@drawable/story_shape"
-        android:clipToOutline="true"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,12 +31,14 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/home_postUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Username"
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/home_postUserId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -48,6 +48,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/home_postDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="89 days ago"
@@ -55,14 +56,30 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:srcCompat="@drawable/threedots"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/ripple_effect_post"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/home_postTopGuideline"
-        />
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:srcCompat="@drawable/threedots"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/home_postTopGuideline"
@@ -71,47 +88,75 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="60dp" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/home_postImg"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/ic_launcher_background"
-        android:background="@drawable/post_img_border"
+        android:layout_marginHorizontal="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_postTopGuideline"
+        app:shapeAppearanceOverlay="@style/RoundedCornerImage"
         />
+
     <TextView
         android:id="@+id/home_postDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="10dp"
         android:text="long text long text long text long text long text long text long text long text long text long text long text long text long text"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@+id/home_postImg"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_postImg" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintTop_toBottomOf="@+id/home_postDesc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
+        <!-- Comment Button -->
         <LinearLayout
             android:id="@+id/home_postComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/home_postCommentIcon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:tint="@color/disabledColor"
-                app:srcCompat="@drawable/post_comment" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/home_postLike"
+            app:layout_constraintHorizontal_weight="1"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/ripple_effect_post"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/home_postCommentIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/disabledColor"
+
+                    app:srcCompat="@drawable/post_comment"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TextView
                 android:id="@+id/home_postCommentCount"
                 android:layout_width="wrap_content"
@@ -120,16 +165,40 @@
                 android:text="0"
                 android:textSize="14sp" />
         </LinearLayout>
+        <!-- Like Button -->
         <LinearLayout
             android:id="@+id/home_postLike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/home_postLikeIcon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:tint="@color/disabledColor"
-                app:srcCompat="@drawable/post_like" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/home_postComment"
+            app:layout_constraintEnd_toStartOf="@+id/home_postBookmark"
+            app:layout_constraintHorizontal_weight="1"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_postLikeButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/ripple_effect_post"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/home_postLikeIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/post_like"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TextView
                 android:id="@+id/home_postLikeCount"
                 android:layout_width="wrap_content"
@@ -138,16 +207,39 @@
                 android:text="0"
                 android:textSize="14sp" />
         </LinearLayout>
+        <!-- Bookmark Button -->
         <LinearLayout
             android:id="@+id/home_postBookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/home_postBookmarkIcon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:tint="@color/disabledColor"
-                app:srcCompat="@drawable/post_bookmark" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/home_postLike"
+            app:layout_constraintEnd_toStartOf="@+id/home_postShare"
+            app:layout_constraintHorizontal_weight="1"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_postBookmarkButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/ripple_effect_post"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/home_postBookmarkIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/post_bookmark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:id="@+id/home_postBookmarkCount"
                 android:layout_width="wrap_content"
@@ -158,14 +250,36 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/home_postShare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/home_postShareIcon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:tint="@color/disabledColor"
-                app:srcCompat="@drawable/post_share" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/home_postBookmark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/ripple_effect_post"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/home_postShareIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/disabledColor"
+                    app:srcCompat="@drawable/post_share"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:id="@+id/home_postShareCount"
                 android:layout_width="wrap_content"
@@ -174,16 +288,6 @@
                 android:text="0"
                 android:textSize="14sp" />
         </LinearLayout>
-        <androidx.constraintlayout.helper.widget.Flow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:flow_horizontalStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:constraint_referenced_ids="home_postComment, home_postLike, home_postBookmark, home_postShare"
-            app:layout_constraintTop_toTopOf="parent"
-            >
-        </androidx.constraintlayout.helper.widget.Flow>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
