@@ -11,8 +11,11 @@
     <color name="signInBtnColor">#FF222E97</color>
     <color name="disabledColor">#FF9E9E9E</color>
     <color name="disabledColorA30">#4C9E9E9E</color>
+    <color name="disabledColor2">#FF716F73</color>
     <color name="signInGradient1">#FFF44635</color>
     <color name="signInGradient2">#FFFEA240</color>
+    <color name="homeGradient1">#FF1CC0DB</color>
+    <color name="homeGradient2">#FF6A74BF</color>
     <color name="rippleShapeSolid">#01FFFFFF</color>
     <color name="rippleColor">#4EB7D0D1</color>
     <color name="rippleColor2">#4D3FA3F5</color>
