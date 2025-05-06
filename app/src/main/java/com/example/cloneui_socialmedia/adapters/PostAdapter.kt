@@ -1,4 +1,4 @@
-package com.example.cloneui_socialmedia
+package com.example.cloneui_socialmedia.adapters
 
 import android.text.Spannable
 import android.text.SpannableString
@@ -13,6 +13,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.example.cloneui_socialmedia.models.PostData
+import com.example.cloneui_socialmedia.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -40,12 +42,12 @@ class PostAdapter(private var itemLists : MutableList<PostData>) : RecyclerView.
         val openDrawerBtn : ConstraintLayout? = itemView.findViewById(R.id.home_openDrawerBtn)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_post,parent,false)
-        return PostAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PostAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemLists[position]
         //Handle Post Top Section
         holder.profileImg

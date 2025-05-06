@@ -1,6 +1,4 @@
-package com.example.cloneui_socialmedia
-
-import java.util.Date
+package com.example.cloneui_socialmedia.models
 
 data class PostData (
     val username : String,

@@ -1,4 +1,4 @@
-package com.example.cloneui_socialmedia
+package com.example.cloneui_socialmedia.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cloneui_socialmedia.models.AboutData
+import com.example.cloneui_socialmedia.R
 
 class AboutAdapter(private var itemLists : MutableList<AboutData>) : RecyclerView.Adapter<AboutAdapter.ViewHolder>() {
 
