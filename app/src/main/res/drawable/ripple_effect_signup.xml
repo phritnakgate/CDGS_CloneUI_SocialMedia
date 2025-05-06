@@ -1,0 +1,4 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/rippleColor2">
+    <item android:drawable="@drawable/signup_text_shape" />
+</ripple>
