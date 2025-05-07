@@ -1,4 +1,4 @@
-package com.example.cloneui_socialmedia
+package com.example.cloneui_socialmedia.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -12,14 +12,20 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cloneui_socialmedia.R
+import com.example.cloneui_socialmedia.adapters.PostAdapter
+import com.example.cloneui_socialmedia.adapters.StoryAdapter
+import com.example.cloneui_socialmedia.models.PostData
+import com.example.cloneui_socialmedia.models.StoryData
 
 
-class HomeFragmentActivity : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //Make gradient title
-        val appTitle = view.findViewById<TextView>(R.id.home_title)
+
+        val appTitle = view.findViewById<TextView>(R.id.textview_home_title)
         val titleWidth = appTitle.paint.measureText(appTitle.text.toString())
         val titleShader = LinearGradient(
             0f,0f,titleWidth,appTitle.textSize,
@@ -49,6 +55,8 @@ class HomeFragmentActivity : Fragment(R.layout.fragment_home) {
 
         //Post RecyclerView
         val postRecyclerView = view.findViewById<RecyclerView>(R.id.home_posts)
+
+        //Mock Data for Posts
         val postList = mutableListOf(
             PostData("John Doe", "johnDoe123", "https://miro.medium.com/v2/resize:fit:920/1*R5zt6Upx-ba905xLU6HNXw.gif", "2025-05-01", "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2456740/header.jpg?t=1744688805", "อยากเล่นเกมนี้มากๆ inZOI พัฒนาโดย inZOI Studio และจัดจำหน่ายโดยคราฟตันเกมนี้จะวางจำหน่ายในวันที่ 28 มีนาคม ค.ศ. 2025", 0, false, 0, 0, 0, false),
             PostData("Major Group", "majorcineplex", "https://scontent.fbkk14-1.fna.fbcdn.net/v/t39.30808-6/492548952_1133013508855724_70950623530622578_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=bsw3XYm76vEQ7kNvwGtFIfU&_nc_oc=AdmGKf6ulbb44CkY2-ka6J7jEzwGifKfjnjzLgxeQ6N27XtAfnUTPJFIVl1hOgYZRhY&_nc_zt=23&_nc_ht=scontent.fbkk14-1.fna&_nc_gid=0_iid83fTRX8kWdVnuEdBg&oh=00_AfKB3J2tgi1LDCJ-E7vPf3qisi5HjiV1zbOP5h97XmpDWQ&oe=681F5318", "2025-03-29", "https://scontent.fbkk10-1.fna.fbcdn.net/v/t39.30808-6/492233042_1130141512476257_4684539077288037862_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ymgOphIECdIQ7kNvwGU1OjM&_nc_oc=Adl4a2AqcywfR64Gc4hOm37ksuznln3dpb5GqNQUVkd1Tt5qrxr6OP6Dt5T8Ad0FYfY&_nc_zt=23&_nc_ht=scontent.fbkk10-1.fna&_nc_gid=iRJZlkF6jC34C3_4Ik1_Jw&oh=00_AfLjQz7n8P0G7Er5UAwW6XEcPGv0-G4BtuiEpYwyL4cgyg&oe=681F341C", "จากเกมชื่อดังสู่ภาพยนตร์เหนือจินตนาการ A #Minecraft Movie - ไมน์คราฟต์ มูฟวี่ เข้าฉาย 3 เมษายนนี้ที่ เมเจอร์ ซีนีเพล็กซ์ \n #MinecraftMovie", 0, false, 0, 0, 0, false),

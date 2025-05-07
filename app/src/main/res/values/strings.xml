@@ -1,6 +1,9 @@
 <resources>
+    <!-- General -->
     <string name="app_name">Qiyorie</string>
-    <string name="userId">@johnDoe1213</string>
+
+    <!-- Profile -->
+    <string name="userId">\@johnDoe1213</string>
 
     <!-- Post Drawer -->
     <string name="post_drawer_bookmark">บันทึก</string>
@@ -12,4 +15,10 @@
     <string name="post_drawer_hide">ซ่อน</string>
     <string name="post_drawer_aboutThisUser">เกี่ยวกับบัญชีนี้</string>
     <string name="post_drawer_report">รายงาน</string>
+
+    <!-- Explore Fragment -->
+    <string name="explore_searchBarHint">Find what you\'re looking for</string>
+    <string name="explore_recommendTitle">Recommended For You</string>
+    <string name="explore_relevantQuestion">Does this suggestion appeal to you?</string>
+    <string name="explore_trendingTitle">Trending Post</string>
 </resources>

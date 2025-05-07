@@ -1,4 +1,4 @@
-package com.example.cloneui_socialmedia
+package com.example.cloneui_socialmedia.models
 
 data class AboutData(
     val title: String,

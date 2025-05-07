@@ -1,4 +1,4 @@
-package com.example.cloneui_socialmedia
+package com.example.cloneui_socialmedia.adapters
 
 import android.animation.Animator
 import android.view.LayoutInflater
@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.example.cloneui_socialmedia.R
+import com.example.cloneui_socialmedia.models.StoryData
 
 class StoryAdapter(private var itemLists : MutableList<StoryData>) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
 
