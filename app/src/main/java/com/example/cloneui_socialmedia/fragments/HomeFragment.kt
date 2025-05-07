@@ -24,7 +24,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         //Make gradient title
-        val appTitle = view.findViewById<TextView>(R.id.home_title)
+
+        val appTitle = view.findViewById<TextView>(R.id.textview_home_title)
         val titleWidth = appTitle.paint.measureText(appTitle.text.toString())
         val titleShader = LinearGradient(
             0f,0f,titleWidth,appTitle.textSize,

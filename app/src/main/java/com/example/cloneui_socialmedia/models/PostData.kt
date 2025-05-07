@@ -13,4 +13,6 @@ data class PostData (
     val postShares : Int,
     var postBookmark : Int,
     var postBookmarked : Boolean,
+    var isRecommended : Boolean = false,
+    var isTrending : Boolean = false
 )

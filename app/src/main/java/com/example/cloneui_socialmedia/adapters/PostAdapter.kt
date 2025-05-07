@@ -24,22 +24,80 @@ import java.util.concurrent.TimeUnit
 class PostAdapter(private var itemLists : MutableList<PostData>) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val glide : RequestManager = Glide.with(itemView.context)
-        val profileImg : AppCompatImageView? = itemView.findViewById(R.id.home_postProfileImg)
-        val username : TextView? = itemView.findViewById(R.id.home_postUsername)
-        val userId : TextView? = itemView.findViewById(R.id.home_postUserId)
-        val postDate : TextView? = itemView.findViewById(R.id.home_postDate)
-        val postImg : AppCompatImageView? = itemView.findViewById(R.id.home_postImg)
-        val postDesc : TextView? = itemView.findViewById(R.id.home_postDesc)
-        val postLikes : TextView? = itemView.findViewById(R.id.home_postLikeCount)
-        val postLikeIcon : AppCompatImageView? = itemView.findViewById(R.id.home_postLikeIcon)
-        val postLikeBtn : ConstraintLayout? = itemView.findViewById(R.id.home_postLikeButton)
-        val postComments : TextView? = itemView.findViewById(R.id.home_postCommentCount)
-        val postShares : TextView? = itemView.findViewById(R.id.home_postShareCount)
-        val postBookmarks : TextView? = itemView.findViewById(R.id.home_postBookmarkCount)
-        val postBookmarkIcon : AppCompatImageView? = itemView.findViewById(R.id.home_postBookmarkIcon)
-        val postBookmarkBtn : ConstraintLayout? = itemView.findViewById(R.id.home_postBookmarkButton)
-        val openDrawerBtn : ConstraintLayout? = itemView.findViewById(R.id.home_openDrawerBtn)
+        private val glide : RequestManager = Glide.with(itemView.context)
+        private val profileImg : AppCompatImageView? = itemView.findViewById(R.id.home_postProfileImg)
+        private val username : TextView? = itemView.findViewById(R.id.home_postUsername)
+        private val userId : TextView? = itemView.findViewById(R.id.home_postUserId)
+        private val postDate : TextView? = itemView.findViewById(R.id.home_postDate)
+        private val postImg : AppCompatImageView? = itemView.findViewById(R.id.home_postImg)
+        private val postDesc : TextView? = itemView.findViewById(R.id.home_postDesc)
+        private val postLikes : TextView? = itemView.findViewById(R.id.home_postLikeCount)
+        private val postLikeIcon : AppCompatImageView? = itemView.findViewById(R.id.home_postLikeIcon)
+        private val postLikeBtn : ConstraintLayout? = itemView.findViewById(R.id.home_postLikeButton)
+        private val postComments : TextView? = itemView.findViewById(R.id.home_postCommentCount)
+        private val postShares : TextView? = itemView.findViewById(R.id.home_postShareCount)
+        private val postBookmarks : TextView? = itemView.findViewById(R.id.home_postBookmarkCount)
+        private val postBookmarkIcon : AppCompatImageView? = itemView.findViewById(R.id.home_postBookmarkIcon)
+        private val postBookmarkBtn : ConstraintLayout? = itemView.findViewById(R.id.home_postBookmarkButton)
+        private val openDrawerBtn : ConstraintLayout? = itemView.findViewById(R.id.home_openDrawerBtn)
+
+        fun bind(post: PostData){
+            if (profileImg != null) {
+                glide.load(post.profileImgUrl)
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .circleCrop()
+                    .into(profileImg)
+            }
+
+            username?.text = post.username
+            userId?.text = "@${post.userId}"
+
+            val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val totalDatePosted = Date().time - formatter.parse(post.datePosted)!!.time
+            postDate?.text = "${TimeUnit.MILLISECONDS.toDays(totalDatePosted)} day(s) ago"
+
+            if (postImg != null) {
+                glide.load(post.postImage)
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .into(postImg)
+            }
+
+            val spannable = SpannableString(post.postDescription)
+            "#\\w+".toRegex().findAll(post.postDescription).forEach {
+                val color = ContextCompat.getColor(itemView.context, R.color.secondaryColor)
+                spannable.setSpan(ForegroundColorSpan(color), it.range.first, it.range.last + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+            postDesc?.text = spannable
+
+            postLikes?.text = post.postLikes.toString()
+            postComments?.text = post.postComments.toString()
+            postShares?.text = post.postShares.toString()
+            postBookmarks?.text = post.postBookmark.toString()
+
+            postLikeIcon?.setImageResource(if (post.postLiked) R.drawable.post_like_pressed else R.drawable.post_like)
+            postBookmarkIcon?.setImageResource(if (post.postBookmarked) R.drawable.post_bookmark_pressed else R.drawable.post_bookmark)
+
+            postLikeBtn?.setOnClickListener {
+                post.postLiked = !post.postLiked
+                post.postLikes += if (post.postLiked) 1 else -1
+                postLikes?.text = post.postLikes.toString()
+                postLikeIcon?.setImageResource(if (post.postLiked) R.drawable.post_like_pressed else R.drawable.post_like)
+            }
+
+            postBookmarkBtn?.setOnClickListener {
+                post.postBookmarked = !post.postBookmarked
+                post.postBookmark += if (post.postBookmarked) 1 else -1
+                postBookmarks?.text = post.postBookmark.toString()
+                postBookmarkIcon?.setImageResource(if (post.postBookmarked) R.drawable.post_bookmark_pressed else R.drawable.post_bookmark)
+            }
+
+            val bottomSheet = BottomSheetDialog(itemView.context)
+            val bottomSheetView = LayoutInflater.from(itemView.context).inflate(R.layout.post_bottomsheet, null)
+            openDrawerBtn?.setOnClickListener {
+                bottomSheet.setContentView(bottomSheetView)
+                bottomSheet.show()
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,78 +107,8 @@ class PostAdapter(private var itemLists : MutableList<PostData>) : RecyclerView.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemLists[position]
-        //Handle Post Top Section
-        holder.profileImg
-        holder.glide.load(item.profileImgUrl)
-            .placeholder(R.drawable.ic_launcher_background)
-            .error(R.drawable.ic_launcher_background)
-            .circleCrop()
-            .into(holder.profileImg!!)
-        holder.username?.text = item.username
-        holder.userId?.text = "@${item.userId}"
-        val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val totalDatePosted = Date().time - formatter.parse(item.datePosted)!!.time
-        holder.postDate?.text = "${TimeUnit.MILLISECONDS.toDays(totalDatePosted)} day(s) ago"
+        holder.bind(item)
 
-        //Handle Post Image
-        holder.postImg
-        holder.glide.load(item.postImage)
-            .placeholder(R.drawable.ic_launcher_background)
-            .error(R.drawable.ic_launcher_background)
-            .into(holder.postImg!!)
-
-        //Handle Post Description
-        val desc = item.postDescription
-        val spannable = SpannableString(desc)
-        val pattern = "#\\w+".toRegex()
-        pattern.findAll(desc).forEach { matchResult ->
-            val startHashTag = matchResult.range.first
-            val endHashTag = matchResult.range.last + 1
-            val color = ContextCompat.getColor(holder.itemView.context, R.color.secondaryColor)
-            spannable.setSpan(
-                ForegroundColorSpan(color)
-                , startHashTag, endHashTag, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-        }
-        holder.postDesc?.text = spannable
-
-        //Handle Post Bottom Section
-        holder.postLikes?.text = item.postLikes.toString()
-        holder.postComments?.text = item.postComments.toString()
-        holder.postBookmarks?.text = item.postBookmark.toString()
-        holder.postShares?.text = item.postShares.toString()
-
-        //Handle Interaction of Like and Bookmark
-        holder.postLikeBtn?.setOnClickListener {
-            item.postLiked = !item.postLiked
-            if (item.postLiked) {
-                item.postLikes += 1
-                holder.postLikeIcon?.setImageResource(R.drawable.post_like_pressed)
-            } else {
-                item.postLikes -= 1
-                holder.postLikeIcon?.setImageResource(R.drawable.post_like)
-            }
-            holder.postLikes?.text = item.postLikes.toString()
-        }
-        holder.postBookmarkBtn?.setOnClickListener {
-            item.postBookmarked = !item.postBookmarked
-            if (item.postBookmarked) {
-                item.postBookmark += 1
-                holder.postBookmarkIcon?.setImageResource(R.drawable.post_bookmark_pressed)
-            } else {
-                item.postBookmark -= 1
-                holder.postBookmarkIcon?.setImageResource(R.drawable.post_bookmark)
-            }
-            holder.postBookmarks?.text = item.postBookmark.toString()
-        }
-
-        //Handle BottomDrawer
-        val bottomSheet = BottomSheetDialog(holder.itemView.context)
-        val bottomSheetView = LayoutInflater.from(holder.itemView.context).inflate(R.layout.post_bottomsheet, null)
-        holder.openDrawerBtn?.setOnClickListener {
-            bottomSheet.setContentView(bottomSheetView)
-            bottomSheet.show()
-        }
     }
 
     override fun getItemCount(): Int {

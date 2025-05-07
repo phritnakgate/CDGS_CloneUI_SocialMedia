@@ -139,6 +139,7 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
+
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/profile_divFollowerTop"
         android:layout_width="match_parent"
