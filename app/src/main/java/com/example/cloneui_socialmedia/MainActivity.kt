@@ -3,6 +3,8 @@ package com.example.cloneui_socialmedia
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.cloneui_socialmedia.fragments.AddFragment
 import com.example.cloneui_socialmedia.fragments.ArchiveFragment
 import com.example.cloneui_socialmedia.fragments.ExploreFragment
@@ -60,5 +62,11 @@ class MainActivity : AppCompatActivity() {
         val notiBadge = bottomNav.getOrCreateBadge(R.id.nav_archive)
         notiBadge.isVisible = true
         notiBadge.number = 4
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, 0, systemBars.right, 0)
+            insets
+        }
     }
 }
