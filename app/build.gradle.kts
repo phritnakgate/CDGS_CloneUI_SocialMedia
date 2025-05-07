@@ -43,11 +43,19 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.camera.lifecycle)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //Glide & Lottie
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.airbnb.android:lottie:3.4.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
+    //CameraX - https://developer.android.com/jetpack/androidx/releases/camera#kts
+    val camerax_version = "1.5.0-alpha06"
+    implementation("androidx.camera:camera-core:${camerax_version}")
+    implementation("androidx.camera:camera-camera2:${camerax_version}")
+    implementation("androidx.camera:camera-lifecycle:${camerax_version}")
+    implementation("androidx.camera:camera-view:${camerax_version}")
 }
