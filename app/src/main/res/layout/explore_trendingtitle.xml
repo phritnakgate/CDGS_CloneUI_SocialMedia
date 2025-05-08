@@ -29,7 +29,7 @@
             android:textColor="@color/disabledColor"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="@string/explore_trendingTitle"
+            android:text="@string/explore_trending_title"
             android:layout_marginStart="10dp"
             />
     </LinearLayout>

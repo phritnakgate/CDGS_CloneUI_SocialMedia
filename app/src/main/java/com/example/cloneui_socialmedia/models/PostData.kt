@@ -8,11 +8,11 @@ data class PostData (
     val postImage : String,
     val postDescription : String,
     var postLikes : Int,
-    var postLiked : Boolean,
+    var isPostLiked : Boolean,
     val postComments : Int,
     val postShares : Int,
     var postBookmark : Int,
-    var postBookmarked : Boolean,
+    var isPostBookmarked : Boolean,
     var isRecommended : Boolean = false,
     var isTrending : Boolean = false
 )

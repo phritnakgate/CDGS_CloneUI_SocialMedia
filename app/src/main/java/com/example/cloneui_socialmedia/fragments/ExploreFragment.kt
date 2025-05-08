@@ -17,18 +17,6 @@ import com.example.cloneui_socialmedia.models.PostData
 
 class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setupRecyclerView()
-
-        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.explore_layout)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
-            insets
-        }
-    }
-
     //Mock Data for Posts
     private var mockMutableList : MutableList<PostData> = mutableListOf(
         PostData(
@@ -62,22 +50,44 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
             0, false, 0, 0, 0, false, isRecommended = true),
     )
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupRecyclerView()
+
+        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.explore_layout)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            insets
+        }
+    }
+
+
+
     private fun setupRecyclerView() {
         val trendingPosts = mockMutableList.filter { it.isTrending }
         val recommendedPosts = mockMutableList.filter { it.isRecommended }
-        //Log.d("TrendingPosts", trendingPosts.toString())
-        //Log.d("RecommendedPosts", recommendedPosts.toString())
-        val views = listOf(
-            ExploreItem.RecommendTitle,
-            ExploreItem.RecommendPost(recommendedPosts),
-            ExploreItem.RelevantBox,
-            ExploreItem.TrendingTitle,
-            ExploreItem.TrendingPost(trendingPosts)
-        )
+
+        val exploreViews: MutableList<ExploreItem> = mutableListOf()
+        exploreViews.add(ExploreItem.RecommendTitle)
+        if (recommendedPosts.isNotEmpty()) {
+            recommendedPosts.forEach { exploreViews.add(ExploreItem.RecommendPost(it)) }
+            exploreViews.add(ExploreItem.RelevantBox)
+        }else{
+            exploreViews.add(ExploreItem.EmptyState)
+        }
+        exploreViews.add(ExploreItem.TrendingTitle)
+        if (trendingPosts.isNotEmpty()) {
+            trendingPosts.forEach { exploreViews.add(ExploreItem.TrendingPost(it)) }
+        }else{
+            exploreViews.add(ExploreItem.EmptyState)
+        }
+
         val exploreRecyclerView = view?.findViewById<RecyclerView>(R.id.explore_contents)
         val exploreAdapter = ExploreAdapter()
         exploreRecyclerView?.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         exploreRecyclerView?.adapter = exploreAdapter
-        exploreAdapter.submitList(views)
+        exploreAdapter.submitList(exploreViews)
     }
+
 }

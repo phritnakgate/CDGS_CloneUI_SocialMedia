@@ -104,7 +104,7 @@
             >
 
             <TextView
-                android:id="@+id/login_signInBtnText"
+                android:id="@+id/textview_login_signin_btn_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
