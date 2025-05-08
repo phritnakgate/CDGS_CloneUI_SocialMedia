@@ -1,9 +1,19 @@
 <resources>
     <!-- General -->
     <string name="app_name">Qiyorie</string>
+    
+    <!-- Login -->
+    <string name="login_form_title">Login to your account</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_signin_btn_text">Sign In</string>
+    <string name="login_signin_social_title">- Or sign in with -</string>
+    <string name="login_signup_title">Don\'t have an account?</string>
+    <string name="login_signup_text">Sign Up</string>
 
     <!-- Profile -->
     <string name="userId">\@johnDoe1213</string>
+
 
     <!-- Post Drawer -->
     <string name="post_drawer_bookmark">บันทึก</string>
@@ -11,14 +21,14 @@
     <string name="post_drawer_share">แชร์</string>
     <string name="post_drawer_fav">เพิ่มในรายการโปรด</string>
     <string name="post_drawer_unfollow">เลิกติดตาม</string>
-    <string name="post_drawer_whyYouSeeThis">ทำไมคุณจึงเห็นโพสต์นี้</string>
+    <string name="post_drawer_why_you_see_this">ทำไมคุณจึงเห็นโพสต์นี้</string>
     <string name="post_drawer_hide">ซ่อน</string>
-    <string name="post_drawer_aboutThisUser">เกี่ยวกับบัญชีนี้</string>
+    <string name="post_drawer_about_this_user">เกี่ยวกับบัญชีนี้</string>
     <string name="post_drawer_report">รายงาน</string>
 
     <!-- Explore Fragment -->
-    <string name="explore_searchBarHint">Find what you\'re looking for</string>
-    <string name="explore_recommendTitle">Recommended For You</string>
-    <string name="explore_relevantQuestion">Does this suggestion appeal to you?</string>
-    <string name="explore_trendingTitle">Trending Post</string>
+    <string name="explore_searchbar_hint">Find what you\'re looking for</string>
+    <string name="explore_recommend_title">Recommended For You</string>
+    <string name="explore_relevant_question">Does this suggestion appeal to you?</string>
+    <string name="explore_trending_title">Trending Post</string>
 </resources>
