@@ -52,10 +52,13 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.airbnb.android:lottie:3.4.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
+
     //CameraX - https://developer.android.com/jetpack/androidx/releases/camera#kts
-    val camerax_version = "1.5.0-alpha06"
-    implementation("androidx.camera:camera-core:${camerax_version}")
-    implementation("androidx.camera:camera-camera2:${camerax_version}")
-    implementation("androidx.camera:camera-lifecycle:${camerax_version}")
-    implementation("androidx.camera:camera-view:${camerax_version}")
+    implementation("androidx.camera:camera-core:<latest_version>")
+    implementation("androidx.camera:camera-camera2:<latest_version>")
+    implementation("androidx.camera:camera-lifecycle:<latest_version>")
+    implementation("androidx.camera:camera-view:<latest_version>")
+
+    //ViewPager2
+    implementation("androidx.viewpager2:viewpager2:<latest_version>")
 }

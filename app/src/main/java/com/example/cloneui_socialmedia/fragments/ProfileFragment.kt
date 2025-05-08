@@ -12,49 +12,11 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.cloneui_socialmedia.R
+import com.example.cloneui_socialmedia.adapters.ProfileViewPagerAdapter
 import com.google.android.material.divider.MaterialDivider
+import com.google.android.material.tabs.TabLayoutMediator
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
-
-    //Function to handle color change
-    private fun highlightTab(isPostTab : Boolean) {
-        val postBtnImg = view?.findViewById<AppCompatImageView>(R.id.profile_postBtnImg)
-        val postText = view?.findViewById<TextView>(R.id.profile_postBtnText)
-        val postDiv = view?.findViewById<MaterialDivider>(R.id.profile_divUnderTabPost)
-        val aboutBtnImg = view?.findViewById<AppCompatImageView>(R.id.profile_aboutBtnImg)
-        val aboutText = view?.findViewById<TextView>(R.id.profile_aboutBtnText)
-        val aboutDiv = view?.findViewById<MaterialDivider>(R.id.profile_divUnderTabAbout)
-        if(isPostTab){
-            postText?.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondaryColor))
-            postDiv?.dividerColor = ContextCompat.getColor(requireContext(), R.color.secondaryColor)
-            postBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(),
-                R.color.secondaryColor
-            )
-            aboutText?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-            aboutDiv?.dividerColor = ContextCompat.getColor(requireContext(),
-                R.color.disabledColorA30
-            )
-            aboutBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(),
-                R.color.black
-            )
-        }else{
-            postText?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-            postDiv?.dividerColor = ContextCompat.getColor(requireContext(),
-                R.color.disabledColorA30
-            )
-            postBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(),
-                R.color.black
-            )
-            aboutText?.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondaryColor))
-            aboutDiv?.dividerColor = ContextCompat.getColor(requireContext(),
-                R.color.secondaryColor
-            )
-            aboutBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(),
-                R.color.secondaryColor
-            )
-        }
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -83,20 +45,28 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         shareBtn.setOnClickListener {
 
         }
-        val postBtn = view.findViewById<LinearLayout>(R.id.profile_postBtn)
-        postBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.profile_postAboutFragment, PostsFragment())
-                .commit()
-            highlightTab(true)
-        }
-        val aboutBtn = view.findViewById<LinearLayout>(R.id.profile_aboutBtn)
-        aboutBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.profile_postAboutFragment, AboutFragment())
-                .commit()
-            highlightTab(false)
-        }
+
+        //Handle Tabs & ViewPager2
+        val postAboutAdapter = ProfileViewPagerAdapter(childFragmentManager, lifecycle)
+        val viewPager = view.findViewById<androidx.viewpager2.widget.ViewPager2>(R.id.viewpager_profile_post_about_fragment)
+        viewPager.adapter = postAboutAdapter
+
+        val tabLayout = view.findViewById<com.google.android.material.tabs.TabLayout>(R.id.tabview_profile_about_post)
+        TabLayoutMediator(tabLayout, viewPager) {tab, position ->
+
+            when (position) {
+                0 -> {
+                    tab.text = "Posts"
+                    tab.icon = ContextCompat.getDrawable(requireContext(), R.drawable.profile_posts)
+                }
+                1 -> {
+                    tab.text = "About"
+                    tab.icon = ContextCompat.getDrawable(requireContext(), R.drawable.profile_profile)
+                }
+            }
+        }.attach()
+
+
         ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.profile_layout)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, 0, systemBars.right, 0)
