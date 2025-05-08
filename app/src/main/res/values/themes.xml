@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.CDGS_CloneUI_SocialMedia" parent="Base.Theme.CDGS_CloneUI_SocialMedia" />
+
+    <style name="Widget.BottomNavigationView.ActiveIndicator" parent="">
+        <item name="android:color">@color/primaryColor</item> <!-- Line color -->
+        <item name="android:height">4dp</item> <!-- Line thickness -->
+        <item name="android:width">2dp</item> <!-- Line width -->
+        <item name="android:gravity">bottom</item> <!-- Position the line at the bottom -->
+    </style>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.example.cloneui_socialmedia
+package com.example.cloneui_socialmedia.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -7,11 +7,14 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.cloneui_socialmedia.R
 import com.google.android.material.divider.MaterialDivider
 
-class ProfileFragmentActivity : Fragment(R.layout.fragment_profile) {
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     //Function to handle color change
     private fun highlightTab(isPostTab : Boolean) {
@@ -24,17 +27,31 @@ class ProfileFragmentActivity : Fragment(R.layout.fragment_profile) {
         if(isPostTab){
             postText?.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondaryColor))
             postDiv?.dividerColor = ContextCompat.getColor(requireContext(), R.color.secondaryColor)
-            postBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.secondaryColor)
+            postBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(),
+                R.color.secondaryColor
+            )
             aboutText?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-            aboutDiv?.dividerColor = ContextCompat.getColor(requireContext(), R.color.disabledColorA30)
-            aboutBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.black)
+            aboutDiv?.dividerColor = ContextCompat.getColor(requireContext(),
+                R.color.disabledColorA30
+            )
+            aboutBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(),
+                R.color.black
+            )
         }else{
             postText?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-            postDiv?.dividerColor = ContextCompat.getColor(requireContext(), R.color.disabledColorA30)
-            postBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.black)
+            postDiv?.dividerColor = ContextCompat.getColor(requireContext(),
+                R.color.disabledColorA30
+            )
+            postBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(),
+                R.color.black
+            )
             aboutText?.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondaryColor))
-            aboutDiv?.dividerColor = ContextCompat.getColor(requireContext(), R.color.secondaryColor)
-            aboutBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.secondaryColor)
+            aboutDiv?.dividerColor = ContextCompat.getColor(requireContext(),
+                R.color.secondaryColor
+            )
+            aboutBtnImg?.imageTintList = ContextCompat.getColorStateList(requireContext(),
+                R.color.secondaryColor
+            )
         }
     }
 
@@ -69,16 +86,21 @@ class ProfileFragmentActivity : Fragment(R.layout.fragment_profile) {
         val postBtn = view.findViewById<LinearLayout>(R.id.profile_postBtn)
         postBtn.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.profile_postAboutFragment, PostsFragmentActivity())
+                .replace(R.id.profile_postAboutFragment, PostsFragment())
                 .commit()
             highlightTab(true)
         }
         val aboutBtn = view.findViewById<LinearLayout>(R.id.profile_aboutBtn)
         aboutBtn.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.profile_postAboutFragment, AboutFragmentActivity())
+                .replace(R.id.profile_postAboutFragment, AboutFragment())
                 .commit()
             highlightTab(false)
+        }
+        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.profile_layout)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, 0, systemBars.right, 0)
+            insets
         }
     }
 }

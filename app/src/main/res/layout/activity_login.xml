@@ -2,77 +2,92 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/login"
     android:background="@color/bgColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
     <TextView
-        android:id="@+id/login_title"
+        android:id="@+id/textview_login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/constraintlayout_login_form"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        />
 
-    <LinearLayout
-        android:id="@+id/login_info"
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_login_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/login_title"
-        android:layout_marginTop="100dp"
         android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/textview_login_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/constraintlayout_login_social"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         >
 
         <TextView
-            android:id="@+id/login_descEmailPwd"
-            android:layout_width="wrap_content"
+            android:id="@+id/textview_login_form_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login to your account"
+            android:text="@string/login_form_title"
             android:textColor="@color/disabledColor"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
         <EditText
-            android:id="@+id/login_emailInput"
+            android:id="@+id/edittext_login_email"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
+            android:autofillHints=""
             android:padding="10dp"
-            android:hint="Email"
+            android:hint="@string/login_email_hint"
             android:inputType="textEmailAddress"
             android:textSize="16sp"
             android:background="@drawable/login_form_border"
+            app:layout_constraintTop_toBottomOf="@+id/textview_login_form_title"
+            app:layout_constraintStart_toStartOf="parent"
             />
         <EditText
-            android:id="@+id/login_passwordInput"
+            android:id="@+id/edittext_login_password"
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
             android:layout_height="60dp"
-            android:hint="Password"
+            android:autofillHints=""
+            android:hint="@string/login_password_hint"
             android:padding="10dp"
             android:inputType="textPassword"
             android:textSize="16sp"
             android:background="@drawable/login_form_border"
+            app:layout_constraintTop_toBottomOf="@+id/edittext_login_email"
             />
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/login_signInBtn"
+            android:id="@+id/constraintlayout_login_signin_btn"
             android:textColor="@color/white"
             android:layout_marginTop="20dp"
             android:background="@drawable/ripple_effect_login_email"
             android:layout_width="match_parent"
-            android:layout_height="50dp" >
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/edittext_login_password"
+            >
 
             <TextView
-                android:id="@+id/login_signInBtnText"
+                android:id="@+id/textview_login_signin_btn_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
@@ -80,7 +95,7 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textAlignment="center"
-                android:text="Sign In"
+                android:text="@string/login_signin_btn_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -88,136 +103,157 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-    <TextView
-        android:id="@+id/login_descSocial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="- Or sign in with -"
-        android:textColor="@color/disabledColor"
-        android:textSize="14sp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintTop_toBottomOf="@+id/login_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_login_social"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/login_descSocial"
-        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayout_login_form"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/constraintlayout_login_signup"
         >
+        <TextView
+            android:id="@+id/textview_login_social_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_signin_social_title"
+            android:textColor="@color/disabledColor"
+            android:textSize="14sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/login_google_btn"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:background="@drawable/ripple_effect_login_social"
-            >
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/login_google_btn_pic"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/google_logo"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/login_facebook_btn"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:background="@drawable/ripple_effect_login_social"
-            >
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/login_facebook_btn_pic"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/facebook_logo"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/login_x_btn"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:background="@drawable/ripple_effect_login_social"
-            >
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/login_x_btn_pic"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/x_logo"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/constraintlayout_login_social_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:flow_horizontalStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:constraint_referenced_ids="login_google_btn,login_facebook_btn,login_x_btn"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textview_login_social_desc"
             >
-        </androidx.constraintlayout.helper.widget.Flow>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintlayout_login_google_btn"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                android:background="@drawable/ripple_effect_login_social"
+                app:layout_constraintEnd_toStartOf="@+id/constraintlayout_login_facebook_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/compatimageview_login_google_btn_pic"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/google_logo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintlayout_login_facebook_btn"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+
+                android:background="@drawable/ripple_effect_login_social"
+                app:layout_constraintEnd_toStartOf="@+id/constraintlayout_login_x_btn"
+                app:layout_constraintStart_toEndOf="@+id/constraintlayout_login_google_btn"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/compatimageview_login_facebook_btn_pic"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/facebook_logo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintlayout_login_x_btn"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:background="@drawable/ripple_effect_login_social"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/constraintlayout_login_facebook_btn"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/compatimageview_login_x_btn_pic"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/x_logo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/login_signUpArea"
-        android:layout_width="wrap_content"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_login_signup"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayout_login_social"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="25dp"
+
 
         >
         <TextView
-            android:id="@+id/login_signUpText"
+            android:id="@+id/textview_login_signup_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?"
+            android:text="@string/login_signup_title"
             android:textColor="@color/disabledColor"
             android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textview_login_signup_btn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
             />
 
-            <TextView
-                android:id="@+id/login_signUpBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sign up"
-                android:background="@drawable/ripple_effect_signup"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="8dp"
-                android:textColor="@color/secondaryColor"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                />
+        <TextView
+            android:id="@+id/textview_login_signup_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_signup_text"
+            android:background="@drawable/ripple_effect_signup"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp"
+            android:textColor="@color/secondaryColor"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textview_login_signup_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

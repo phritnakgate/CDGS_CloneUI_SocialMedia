@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomDrawer_bookmarkQr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <!-- Bookmark -->
+        <LinearLayout
+            android:id="@+id/bottomDrawer_bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/bottomDrawer_qr"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/drawer_circular_bg"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/bottomDrawer_bookmarkIcon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:tint="@color/black"
+                    app:srcCompat="@drawable/post_bookmark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/bottomDrawer_bookmarkText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_drawer_bookmark"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+
+        <!-- QR -->
+        <LinearLayout
+            android:id="@+id/bottomDrawer_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/bottomDrawer_bookmark"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/drawer_circular_bg"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/bottomDrawer_qrIcon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:tint="@color/black"
+                    app:srcCompat="@drawable/drawer_qrcode"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/bottomDrawer_qrText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_drawer_qr"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bottomDrawer_bookmarkQr"
+
+        app:layout_constraintVertical_chainStyle="spread">
+
+        <!-- Share -->
+        <LinearLayout
+            android:id="@+id/bottomDrawer_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottomDrawer_fav"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/drawer_share" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_drawer_share"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
+
+        <!-- Fav -->
+        <LinearLayout
+            android:id="@+id/bottomDrawer_fav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/bottomDrawer_share"
+            app:layout_constraintBottom_toTopOf="@+id/bottomDrawer_unfollow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:srcCompat="@drawable/drawer_fav" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_drawer_fav"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+
+        <!-- Unfollow -->
+        <LinearLayout
+            android:id="@+id/bottomDrawer_unfollow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/bottomDrawer_fav"
+            app:layout_constraintBottom_toTopOf="@+id/bottomDrawer_whyYouSeeThis"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/drawer_unfollow" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_drawer_unfollow"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
+
+        <!-- Why You See This Post -->
+        <LinearLayout
+            android:id="@+id/bottomDrawer_whyYouSeeThis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/bottomDrawer_unfollow"
+            app:layout_constraintBottom_toTopOf="@+id/bottomDrawer_hide"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/drawer_about" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_drawer_why_you_see_this"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
+
+        <!-- Hide -->
+        <LinearLayout
+            android:id="@+id/bottomDrawer_hide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/bottomDrawer_whyYouSeeThis"
+            app:layout_constraintBottom_toTopOf="@+id/bottomDrawer_aboutThisUser"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/drawer_hide" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_drawer_hide"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+
+        <!-- About This Acc -->
+        <LinearLayout
+            android:id="@+id/bottomDrawer_aboutThisUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/bottomDrawer_hide"
+            app:layout_constraintBottom_toTopOf="@+id/bottomDrawer_report"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/nav_profile_ic" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_drawer_about_this_user"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
+
+        <!-- Report -->
+        <LinearLayout
+            android:id="@+id/bottomDrawer_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/bottomDrawer_aboutThisUser"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/drawer_report"
+                android:tint="@color/signInGradient1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_drawer_report"
+                android:textSize="16sp"
+                android:textColor="@color/signInGradient1"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

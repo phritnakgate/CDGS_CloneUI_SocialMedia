@@ -14,13 +14,42 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var appTitle : TextView
+    private lateinit var loginButton : ConstraintLayout
+    private lateinit var facebookButton : ConstraintLayout
+    private lateinit var googleButton : ConstraintLayout
+    private lateinit var xButton : ConstraintLayout
+    private lateinit var signUpButton : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
-        //Title Gradient
-        val appTitle = findViewById<TextView>(R.id.login_title)
+        initViews()
+        appTitleShaderInit()
+        buttonInit()
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+    }
+
+    private fun initViews(){
+        appTitle = findViewById(R.id.textview_login_title)
+        loginButton = findViewById(R.id.constraintlayout_login_signin_btn)
+        facebookButton = findViewById(R.id.constraintlayout_login_facebook_btn)
+        googleButton = findViewById(R.id.constraintlayout_login_google_btn)
+        xButton = findViewById(R.id.constraintlayout_login_x_btn)
+        signUpButton = findViewById(R.id.textview_login_signup_btn)
+    }
+
+    //Title Gradient
+    private fun appTitleShaderInit(){
+
         val titleWidth = appTitle.paint.measureText(appTitle.text.toString())
         val titleShader = LinearGradient(
             0f,0f,titleWidth,appTitle.textSize,
@@ -32,9 +61,11 @@ class LoginActivity : AppCompatActivity() {
             Shader.TileMode.CLAMP
         )
         appTitle.paint.shader = titleShader
+    }
 
+    //Button Clicks
+    private fun buttonInit(){
         //Handle Login Button
-        val loginButton = findViewById<ConstraintLayout>(R.id.login_signInBtn)
         loginButton.setOnClickListener {
             Log.d("Login Button", "Clicked")
             val intent = Intent(this, MainActivity::class.java)
@@ -42,28 +73,19 @@ class LoginActivity : AppCompatActivity() {
         }
 
         //Handle Social Media Buttons
-        val facebookButton = findViewById<ConstraintLayout>(R.id.login_facebook_btn)
         facebookButton.setOnClickListener {
             Log.d("Facebook Button", "Clicked")
         }
-        val googleButton = findViewById<ConstraintLayout>(R.id.login_google_btn)
         googleButton.setOnClickListener {
             Log.d("Google Button", "Clicked")
         }
-        val xButton = findViewById<ConstraintLayout>(R.id.login_x_btn)
         xButton.setOnClickListener {
             Log.d("X Button", "Clicked")
         }
+
         //Handle Signup
-        val signUpButton = findViewById<TextView>(R.id.login_signUpBtn)
         signUpButton.setOnClickListener {
             Log.d("Sign Up Button", "Clicked")
-        }
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
         }
     }
 }
