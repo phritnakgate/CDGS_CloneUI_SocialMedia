@@ -5,12 +5,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.camera.view.PreviewView
-        android:id="@+id/preview_view_camera"
+        android:id="@+id/previewview_camera_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="10dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintlayout_camera_swichcam"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/ripple_effect_camera"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/constraintlayout_camera_capture"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            >
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/camera_switchcam"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintlayout_camera_capture"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/ripple_effect_camera"
+            app:layout_constraintStart_toEndOf="@+id/constraintlayout_camera_swichcam"
+            app:layout_constraintEnd_toStartOf="@+id/constraintlayout_camera_gallery"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/camera_capture"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintlayout_camera_gallery"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/ripple_effect_camera"
+            app:layout_constraintStart_toEndOf="@+id/constraintlayout_camera_capture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/camera_gallery"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
