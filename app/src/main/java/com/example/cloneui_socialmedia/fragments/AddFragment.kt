@@ -6,6 +6,7 @@ import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -17,12 +18,14 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.view.CameraController
 import androidx.camera.view.PreviewView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.cloneui_socialmedia.R
 import com.example.cloneui_socialmedia.utils.Constants
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
@@ -67,7 +70,7 @@ class AddFragment : Fragment(R.layout.fragment_add) {
 
         initViews()
         initListeners()
-        cameraExecutor = Executors.newSingleThreadExecutor()
+        //cameraExecutor = Executors.newSingleThreadExecutor()
 
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
@@ -83,7 +86,7 @@ class AddFragment : Fragment(R.layout.fragment_add) {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        cameraExecutor.shutdown()
+        //cameraExecutor.shutdown()
     }
 
     private fun initViews(){
@@ -123,41 +126,37 @@ class AddFragment : Fragment(R.layout.fragment_add) {
     }
 
     private fun takePhoto() {
+        //File Management
         val imageCapture = imageCapture ?: return
-
-        val name = SimpleDateFormat(Constants.ISO_DATE_FORMAT, Locale.US)
-            .format(System.currentTimeMillis())
-
+        val fileName = SimpleDateFormat(Constants.ISO_DATE_FORMAT, Locale.US).format(System.currentTimeMillis())
         val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
-            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            put(MediaStore.Images.Media.RELATIVE_PATH, "DCIM/Camera")
+            put(MediaStore.Images.Media.DISPLAY_NAME, fileName)
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P){
+                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/Qiyorie")
+            }
         }
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(
+            requireContext().contentResolver,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            contentValues
+            ).build()
 
-        val contentResolver = requireActivity().contentResolver
-        val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-
-        if (uri == null) {
-            Log.e("AddFragment", "Failed to create MediaStore entry.")
-            return
-        }
-
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(contentResolver, uri, null).build()
-
+        //Image Capture
         imageCapture.takePicture(
             outputOptions,
-            cameraExecutor,
+            ContextCompat.getMainExecutor(requireContext()),
             object : ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    val savedUri = outputFileResults.savedUri?.path
+                    Toast.makeText(requireContext(), "Photo saved: $savedUri", Toast.LENGTH_SHORT).show()
+                }
+
                 override fun onError(exception: ImageCaptureException) {
                     Log.e("AddFragment", "Photo capture failed: ${exception.message}", exception)
                 }
-
-                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    requireActivity().runOnUiThread {
-                        Toast.makeText(requireContext(), "Photo saved to gallery!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            })
+            }
+        )
     }
 
 
