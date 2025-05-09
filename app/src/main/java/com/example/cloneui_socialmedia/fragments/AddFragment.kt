@@ -18,18 +18,14 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.view.CameraController
 import androidx.camera.view.PreviewView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.cloneui_socialmedia.R
 import com.example.cloneui_socialmedia.utils.Constants
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class AddFragment : Fragment(R.layout.fragment_add) {
     // https://developer.android.com/codelabs/camerax-getting-started#0 \\
@@ -40,7 +36,6 @@ class AddFragment : Fragment(R.layout.fragment_add) {
     private lateinit var openGalleryBtn : ConstraintLayout
 
     //CameraX
-    private lateinit var cameraExecutor : ExecutorService
     private var imageCapture : ImageCapture? = null
     private var cameraFacing: Int = CameraSelector.LENS_FACING_BACK
 
@@ -70,7 +65,6 @@ class AddFragment : Fragment(R.layout.fragment_add) {
 
         initViews()
         initListeners()
-        //cameraExecutor = Executors.newSingleThreadExecutor()
 
         if (ContextCompat.checkSelfPermission(
                 requireContext(),
@@ -82,11 +76,6 @@ class AddFragment : Fragment(R.layout.fragment_add) {
             requestPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
 
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        //cameraExecutor.shutdown()
     }
 
     private fun initViews(){

@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.cloneui_socialmedia.R
 import com.example.cloneui_socialmedia.adapters.PostAdapter
 import com.example.cloneui_socialmedia.adapters.StoryAdapter
@@ -24,6 +25,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var appTitle : TextView
     private lateinit var postRecyclerView : RecyclerView
     private lateinit var storyRecyclerView : RecyclerView
+    private lateinit var pullRefresh : SwipeRefreshLayout
 
     //ALL MOCK DATA \\
     //Stories
@@ -52,6 +54,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         displayStories()
         displayPosts()
 
+        pullRefreshInit()
+
         ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.home_layout)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
@@ -62,8 +66,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun initViews(){
         appTitle = requireView().findViewById(R.id.textview_home_title)
-        storyRecyclerView = requireView().findViewById(R.id.home_storyBar)
-        postRecyclerView = requireView().findViewById(R.id.home_posts)
+        storyRecyclerView = requireView().findViewById(R.id.recyclerview_home_storybar)
+        postRecyclerView = requireView().findViewById(R.id.recyclerview_home_posts)
+        pullRefresh = requireView().findViewById(R.id.home_layout)
     }
 
     //Make gradient title
@@ -95,5 +100,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         postRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         postRecyclerView.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
         postAdapter.submitList(postList)
+    }
+
+    //Handle Refresh Logic
+    private fun pullRefreshInit() {
+        pullRefresh.setProgressViewOffset(true, 100,200)
+        pullRefresh.setOnRefreshListener {
+            pullRefresh.postDelayed({
+                pullRefresh.isRefreshing = false
+           },1000)
+
+        }
+
+
     }
 }

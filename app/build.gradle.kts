@@ -61,4 +61,7 @@ dependencies {
 
     //ViewPager2
     implementation("androidx.viewpager2:viewpager2:<latest_version>")
+
+    //Pull Refresh
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

@@ -1,28 +1,14 @@
 package com.example.cloneui_socialmedia.adapters
 
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
 import com.example.cloneui_socialmedia.R
 import com.example.cloneui_socialmedia.models.PostData
 import com.example.cloneui_socialmedia.utils.PostBinder
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import java.util.concurrent.TimeUnit
 
 class PostAdapter : ListAdapter<PostData, PostAdapter.ViewHolder>(PostDiffCallback()) {
 
