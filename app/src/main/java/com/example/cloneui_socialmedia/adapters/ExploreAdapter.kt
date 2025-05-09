@@ -64,11 +64,19 @@ class ExploreAdapter : ListAdapter<ExploreItem, RecyclerView.ViewHolder>(Explore
     inner class RecommendPostViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val recommendedContainer = view.findViewById<FrameLayout>(R.id.framelayout_explore_recommendPosts)
 
-        fun bind(post: PostData) {
+        fun bind(post: PostData, groupIndex: Int, groupSize: Int) {
             recommendedContainer.removeAllViews()
             val postView = LayoutInflater.from(recommendedContainer.context).inflate(R.layout.recycler_post, recommendedContainer, false)
             PostBinder.bind(postView,post)
             recommendedContainer.addView(postView)
+
+            val postBorder = when {
+                groupSize == 1 -> R.drawable.edit_profile_border
+                groupIndex == 0 -> R.drawable.explore_recommended_post_top
+                groupIndex == groupSize - 1 -> R.drawable.explore_recommended_post_bottom
+                else -> R.drawable.explore_recommended_post_mid
+            }
+            itemView.setBackgroundResource(postBorder)
         }
     }
     inner class TrendingPostViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -129,10 +137,22 @@ class ExploreAdapter : ListAdapter<ExploreItem, RecyclerView.ViewHolder>(Explore
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
         when {
-            holder is RecommendPostViewHolder && item is ExploreItem.RecommendPost -> holder.bind(item.post)
+            holder is RecommendPostViewHolder && item is ExploreItem.RecommendPost -> {
+                val (groupIndex, groupSize) = getRecommendedPostsPosition(position)
+                holder.bind(item.post, groupIndex, groupSize)
+            }
             holder is RelevantBoxViewHolder && item is ExploreItem.RelevantBox -> holder.bind()
             holder is TrendingPostViewHolder && item is ExploreItem.TrendingPost -> holder.bind(item.post)
         }
+    }
+
+    private fun getRecommendedPostsPosition(position: Int) : Pair<Int, Int>{
+        val recommendPosts = currentList
+            .mapIndexed{index, item -> index to item}
+            .filter { it.second is ExploreItem.RecommendPost }
+        val groupIndex = recommendPosts.indexOfFirst { it.first == position }
+        val groupSize = recommendPosts.size
+        return Pair(groupIndex, groupSize)
     }
 
 }

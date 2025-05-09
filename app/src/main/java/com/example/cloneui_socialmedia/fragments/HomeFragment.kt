@@ -105,8 +105,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     //Handle Refresh Logic
     private fun pullRefreshInit() {
         pullRefresh.setProgressViewOffset(true, 100,200)
+        pullRefresh.setColorSchemeResources(R.color.primaryColor)
         pullRefresh.setOnRefreshListener {
             pullRefresh.postDelayed({
+                // Add more Post
+                postList.add(0,
+                    PostData(
+                        "Another User", "anotherUser456",
+                        "https://example.com/another_user_profile.jpg",
+                        "2025-05-02",
+                        "https://example.com/another_post_image.jpg",
+                        "Another new post added on refresh!",
+                        0, false, 0, 0, 0, false
+                    )
+                )
+                postRecyclerView.adapter?.notifyDataSetChanged()
                 pullRefresh.isRefreshing = false
            },1000)
 

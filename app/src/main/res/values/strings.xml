@@ -12,7 +12,19 @@
     <string name="login_signup_text">Sign Up</string>
 
     <!-- Profile -->
-    <string name="userId">\@johnDoe1213</string>
+    <string name="profile_username">John Doe</string>
+    <string name="profile_userid">\@johnDoe1213</string>
+    <string name="profile_desc">Hello My name is Hello world nice to meet you</string>
+    <string name="profile_edit_title">Edit Profile</string>
+    <string name="profile_posts_title">Posts</string>
+    <string name="profile_posts_total">21</string>
+    <string name="profile_followers_title">Followers</string>
+    <string name="profile_followers_total">1,201</string>
+    <string name="profile_followings_title">Following</string>
+    <string name="profile_followings_total">64</string>
+    <string name="profile_basicinfo_title">Basic Information</string>
+    <string name="profile_tabview_post_title">Posts</string>\
+    <string name="profile_tabview_about_title">About</string>
 
 
     <!-- Post Drawer -->

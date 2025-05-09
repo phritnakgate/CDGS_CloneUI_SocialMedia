@@ -54,9 +54,9 @@
             />
         <View
             android:id="@+id/view_home_divUnderstoryBar"
-            android:layout_width="0dp"
-            android:layout_height="3dp"
-            app:dividerColor="@color/disabledColorA30"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/disabledColorA30"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerview_home_storybar" />
         <!-- End Story Bar -->

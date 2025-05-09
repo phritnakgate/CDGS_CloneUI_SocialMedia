@@ -34,7 +34,7 @@
                 android:id="@+id/home_postUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username"
+                android:text="@string/profile_username"
                 android:textSize="14sp" />
 
             <TextView
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="@string/userId"
+                android:text="@string/profile_userid"
                 android:textColor="@color/disabledColor"
                 android:textSize="14sp" />
         </LinearLayout>

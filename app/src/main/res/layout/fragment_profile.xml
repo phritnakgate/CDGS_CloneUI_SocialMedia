@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
    <androidx.appcompat.widget.AppCompatImageView
-       android:id="@+id/profile_coverImg"
+       android:id="@+id/compatimageview_profile_cover_img"
        android:layout_width="match_parent"
        android:layout_height="150dp"
        android:scaleType="centerCrop"
@@ -17,90 +17,102 @@
    </androidx.appcompat.widget.AppCompatImageView>
 
    <androidx.constraintlayout.widget.ConstraintLayout
-       android:id="@+id/profile_profileImg"
+       android:id="@+id/constraintlayout_profile_profile_img"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_marginTop="75dp"
        app:layout_constraintTop_toTopOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
-
-
        >
-         <androidx.appcompat.widget.AppCompatImageView
-              android:id="@+id/profile_profileImgView"
-              android:layout_width="100dp"
-              android:layout_height="100dp"
-              android:layout_marginTop="20dp"
-              android:layout_marginStart="16dp"
-              android:scaleType="centerCrop"
-             android:background="@drawable/profile_img"
-               app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-              />
+     <androidx.appcompat.widget.AppCompatImageView
+          android:id="@+id/compatimageview_profile_profile_img"
+          android:layout_width="100dp"
+          android:layout_height="100dp"
+          android:scaleType="centerCrop"
+         android:background="@drawable/profile_img"
+           app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/profile_usernameLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_profile_username_userid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/profile_profileImg"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayout_profile_profile_img"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textview_profile_desc"
         >
         <TextView
-            android:id="@+id/profile_username"
+            android:id="@+id/textview_profile_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="John Doe"
+            android:text="@string/profile_username"
             android:textSize="14sp"
             android:textStyle="bold"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textview_profile_userid"
+            app:layout_constraintTop_toTopOf="parent"
             />
         <TextView
-            android:id="@+id/profile_userId"
+            android:id="@+id/textview_profile_userid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/userId"
+            android:text="@string/profile_userid"
             android:textSize="14sp"
-            android:layout_marginStart="5dp" />
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@+id/textview_profile_username"
+            app:layout_constraintEnd_toStartOf="@+id/compatimageview_profile_verified"
+            app:layout_constraintTop_toTopOf="parent"
+            />
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/compatimageview_profile_verified"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:srcCompat="@drawable/profile_verified"
             android:layout_marginStart="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textview_profile_userid"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
-        android:id="@+id/profile_desc"
+        android:id="@+id/textview_profile_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello My name is Hello world nice to meet you"
+        android:text="@string/profile_desc"
         android:textSize="14sp"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/profile_usernameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayout_profile_username_userid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/profile_editShareBtn"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintlayout_profile_edit_share_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/profile_desc"
+        app:layout_constraintTop_toBottomOf="@+id/textview_profile_desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profile_editBtn"
+            android:id="@+id/constraintlayout_profile_edit_btn"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/ripple_effect_editprofile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/constraintlayout_profile_share_btn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
             >
 
             <TextView
@@ -112,7 +124,7 @@
                 android:textColor="@color/primaryColor"
                 android:textSize="14sp"
                 android:textAlignment="center"
-                android:text="Edit Profile"
+                android:text="@string/profile_edit_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -120,11 +132,14 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profile_shareBtn"
+            android:id="@+id/constraintlayout_profile_share_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/ripple_effect_share"
+            app:layout_constraintStart_toEndOf="@+id/constraintlayout_profile_edit_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             >
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -138,111 +153,117 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/profile_divFollowerTop"
+    <View
+        android:id="@+id/view_profile_div_follower_top"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        app:dividerColor="@color/disabledColorA30"
+        android:background="@color/disabledColorA30"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/profile_editShareBtn"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayout_profile_edit_share_btn"
         />
+    <!-- Follower -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profile_followerData"
+        android:id="@+id/constraintlayout_profile_follower_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/profile_divFollowerTop"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_divFollowerBottom"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/view_profile_div_follower_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         >
         <!-- Total Post Count -->
         <LinearLayout
-            android:id="@+id/profile_posts"
+            android:id="@+id/linearlayout_profile_posts"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearlayout_profile_followers"
+            app:layout_constraintTop_toTopOf="parent"
+            >
             <TextView
-                android:id="@+id/profile_postCount"
+                android:id="@+id/textview_profile_post_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="21"
+                android:text="@string/profile_posts_total"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 />
             <TextView
-                android:id="@+id/profile_postCountText"
+                android:id="@+id/textview_profile_post_count_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Post"
+                android:text="@string/profile_posts_title"
                 android:textSize="14sp"
                 />
         </LinearLayout>
         <!-- Total Followers Count -->
         <LinearLayout
-            android:id="@+id/profile_followers"
+            android:id="@+id/linearlayout_profile_followers"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/linearlayout_profile_posts"
+            app:layout_constraintEnd_toStartOf="@+id/linearlayout_profile_followings"
+            app:layout_constraintTop_toTopOf="parent"
+            >
             <TextView
-                android:id="@+id/profile_followerCount"
+                android:id="@+id/textview_profile_follower_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1,201"
+                android:text="@string/profile_followers_total"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 />
             <TextView
-                android:id="@+id/profile_followerCountText"
+                android:id="@+id/textview_profile_follower_count_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Followers"
+                android:text="@string/profile_followers_title"
                 android:textSize="14sp"
                 />
         </LinearLayout>
         <!-- Total Following Count -->
         <LinearLayout
-            android:id="@+id/profile_followings"
+            android:id="@+id/linearlayout_profile_followings"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/linearlayout_profile_followers"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
             <TextView
-                android:id="@+id/profile_followingCount"
+                android:id="@+id/textview_profile_following_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="64"
+                android:text="@string/profile_followings_total"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 />
             <TextView
-                android:id="@+id/profile_followingCountText"
+                android:id="@+id/textview_profile_following_count_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Following"
+                android:text="@string/profile_followings_title"
                 android:textSize="14sp"
                 />
         </LinearLayout>
-        <androidx.constraintlayout.helper.widget.Flow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:flow_horizontalStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:constraint_referenced_ids="profile_posts, profile_followers, profile_followings"
-            app:layout_constraintTop_toTopOf="parent"
-            >
-        </androidx.constraintlayout.helper.widget.Flow>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/profile_divFollowerBottom"
+    <View
+        android:id="@+id/view_profile_div_follower_bottom"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        app:dividerColor="@color/disabledColorA30"
+        android:background="@color/disabledColorA30"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/profile_followerData"
+        app:layout_constraintTop_toBottomOf="@+id/constraintlayout_profile_follower_data"
         />
+    <!-- Tab View -->
    <com.google.android.material.tabs.TabLayout
        android:id="@+id/tabview_profile_about_post"
        android:layout_width="match_parent"
@@ -255,7 +276,7 @@
        app:tabIconTint="@color/profile_tabview_color"
        app:tabGravity="fill"
        app:tabIndicatorFullWidth="true"
-       app:layout_constraintTop_toBottomOf="@+id/profile_divFollowerBottom"
+       app:layout_constraintTop_toBottomOf="@+id/view_profile_div_follower_bottom"
        />
     <!-- View of Post&About -->
     <androidx.viewpager2.widget.ViewPager2
