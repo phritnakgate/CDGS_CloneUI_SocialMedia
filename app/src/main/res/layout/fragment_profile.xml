@@ -35,7 +35,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:id="@+id/constraintlayout_profile_edit"
+           android:layout_width="35dp"
+           android:layout_height="35dp"
+           android:background="@drawable/profile_edit_pic_bg"
+           android:clickable="true"
+           android:focusable="true"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+           >
+
+           <androidx.appcompat.widget.AppCompatImageView
+               android:id="@+id/compatimageview_profile_edit_ic"
+               android:layout_width="24dp"
+               android:layout_height="24dp"
+               app:srcCompat="@drawable/about_edit"
+               android:tint="@color/white"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintBottom_toBottomOf="parent"
+               />
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+
    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintlayout_profile_username_userid"

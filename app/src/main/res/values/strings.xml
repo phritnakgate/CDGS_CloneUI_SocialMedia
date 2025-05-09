@@ -38,6 +38,11 @@
     <string name="post_drawer_about_this_user">เกี่ยวกับบัญชีนี้</string>
     <string name="post_drawer_report">รายงาน</string>
 
+    <!-- Edit Profie Image Drawer -->
+    <string name="profile_drawer_editprofile_capture">Take a Photo</string>
+    <string name="profile_drawer_editprofile_gallery">Choose from Gallery</string>
+
+
     <!-- Explore Fragment -->
     <string name="explore_searchbar_hint">Find what you\'re looking for</string>
     <string name="explore_recommend_title">Recommended For You</string>

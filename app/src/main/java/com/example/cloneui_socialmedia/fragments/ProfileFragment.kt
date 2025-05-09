@@ -1,17 +1,26 @@
 package com.example.cloneui_socialmedia.fragments
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.cloneui_socialmedia.R
 import com.example.cloneui_socialmedia.adapters.ProfileViewPagerAdapter
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
+import java.io.File
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
@@ -21,6 +30,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private lateinit var shareBtn : ConstraintLayout
     private lateinit var viewPager : androidx.viewpager2.widget.ViewPager2
     private lateinit var tabLayout : com.google.android.material.tabs.TabLayout
+    private lateinit var editProfileImg : ConstraintLayout
+    private var bottomSheet : BottomSheetDialog? = null
+    private var cameraImageUri: Uri? = null
     
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,6 +57,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         shareBtn = requireView().findViewById(R.id.constraintlayout_profile_share_btn)
         viewPager = requireView().findViewById(R.id.viewpager_profile_post_about_fragment)
         tabLayout = requireView().findViewById(R.id.tabview_profile_about_post)
+        editProfileImg = requireView().findViewById(R.id.constraintlayout_profile_edit)
+
     }
 
     private fun loadImage(){
@@ -84,5 +98,60 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun buttonClickHandler(){
         editBtn.setOnClickListener {}
         shareBtn.setOnClickListener {}
+        editProfileImg.setOnClickListener {
+            bottomSheet = BottomSheetDialog(requireView().context)
+            val bottomSheetView = View.inflate(requireView().context, R.layout.profile_changeprofile_bottomsheet, null)
+            bottomSheet!!.setContentView(bottomSheetView)
+            bottomSheet!!.show()
+
+            //Capture Image
+            val captureImageTab = bottomSheetView.findViewById<ConstraintLayout>(R.id.constraintlayout_profile_bottomdrawer_editprofile_capture)
+            captureImageTab.setOnClickListener {
+                val imageFile = File(requireContext().cacheDir, "captured_image.jpg")
+                cameraImageUri = FileProvider.getUriForFile(
+                    requireContext(),
+                    "${requireContext().packageName}.provider",
+                    imageFile
+                )
+                captureImageLauncher.launch(cameraImageUri)
+            }
+
+            //Gallery Image
+            val selectGalleryTab = bottomSheetView.findViewById<ConstraintLayout>(R.id.constraintlayout_profile_bottomdrawer_editprofile_gallery)
+            selectGalleryTab.setOnClickListener {
+                val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                openGalleryLauncher.launch(intent)
+            }
+        }
+
     }
+
+    private val openGalleryLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val selectedImageUri: Uri? = result.data?.data
+                selectedImageUri?.let {
+                    //Toast.makeText(requireContext(), "Gallery Image Selected: $it", Toast.LENGTH_SHORT).show()
+                    Glide.with(this)
+                        .load(it)
+                        .placeholder(R.drawable.ic_launcher_foreground)
+                        .circleCrop()
+                        .into(profileImg)
+                }
+                bottomSheet?.dismiss()
+            }
+        }
+    private val captureImageLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { result ->
+        if (result && cameraImageUri != null) {
+            Glide.with(this)
+                .load(cameraImageUri)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .circleCrop()
+                .into(profileImg)
+
+            bottomSheet?.dismiss()
+            Toast.makeText(requireContext(), "Captured image set successfully", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
