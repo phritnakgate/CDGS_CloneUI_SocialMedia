@@ -37,12 +37,12 @@ class MainActivity : AppCompatActivity() {
 
     //Init Views
     private fun initViews(){
-        bottomNav = findViewById(R.id.bottomNavBar)
+        bottomNav = findViewById(R.id.bottomnavigation_main)
     }
     //Handle Showing Fragments
     private fun showFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
+            .replace(R.id.framelayout_main_fragment, fragment)
             .commit()
     }
     //Handle Bottom Navigation
