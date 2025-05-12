@@ -40,7 +40,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
             "2025-03-29",
             "https://scontent.fbkk10-1.fna.fbcdn.net/v/t39.30808-6/492233042_1130141512476257_4684539077288037862_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ymgOphIECdIQ7kNvwGU1OjM&_nc_oc=Adl4a2AqcywfR64Gc4hOm37ksuznln3dpb5GqNQUVkd1Tt5qrxr6OP6Dt5T8Ad0FYfY&_nc_zt=23&_nc_ht=scontent.fbkk10-1.fna&_nc_gid=iRJZlkF6jC34C3_4Ik1_Jw&oh=00_AfLjQz7n8P0G7Er5UAwW6XEcPGv0-G4BtuiEpYwyL4cgyg&oe=681F341C",
             "จากเกมชื่อดังสู่ภาพยนตร์เหนือจินตนาการ A #Minecraft Movie - ไมน์คราฟต์ มูฟวี่ เข้าฉาย 3 เมษายนนี้ที่ เมเจอร์ ซีนีเพล็กซ์ \n #MinecraftMovie",
-            0, false, 0, 0, 0, false, isTrending = true),
+            0, false, 0, 0, 0, false, isRecommended = true),
         PostData(
             "Thailand Game Show",
             "tgs",
