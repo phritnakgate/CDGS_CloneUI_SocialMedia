@@ -19,7 +19,8 @@ class ExploreAdapter : ListAdapter<ExploreItem, RecyclerView.ViewHolder>(Explore
 
 
     //ViewHolder
-    inner class EmptyStateViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    inner class EmptySomeViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    inner class EmptyAllViewHolder(view: View) : RecyclerView.ViewHolder(view)
     inner class RecommendTitleViewHolder(view: View) : RecyclerView.ViewHolder(view)
     inner class TrendingTitleViewHolder(view: View) : RecyclerView.ViewHolder(view)
     inner class RelevantBoxViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -98,8 +99,9 @@ class ExploreAdapter : ListAdapter<ExploreItem, RecyclerView.ViewHolder>(Explore
             is ExploreItem.RelevantBox -> ExploreType.TYPE_APPEAL_OR_NOT
             is ExploreItem.TrendingTitle -> ExploreType.TYPE_TRENDING_TITLE
             is ExploreItem.TrendingPost -> ExploreType.TYPE_TRENDING_POST
-            is ExploreItem.EmptyState -> ExploreType.TYPE_EMPTY_STATE
-            else -> ExploreType.TYPE_EMPTY_STATE
+            is ExploreItem.EmptySome -> ExploreType.TYPE_EMPTY_SOME
+            is ExploreItem.EmptyAll -> ExploreType.TYPE_EMPTY_ALL
+            else -> ExploreType.TYPE_EMPTY_SOME
         }
     }
 
@@ -126,9 +128,13 @@ class ExploreAdapter : ListAdapter<ExploreItem, RecyclerView.ViewHolder>(Explore
                 val view = inflater.inflate(R.layout.explore_trendingpost, parent, false)
                 TrendingPostViewHolder(view)
             }
-            ExploreType.TYPE_EMPTY_STATE -> {
-                val view = inflater.inflate(R.layout.explore_emptystate, parent, false)
-                EmptyStateViewHolder(view)
+            ExploreType.TYPE_EMPTY_SOME -> {
+                val view = inflater.inflate(R.layout.explore_emptystate_some, parent, false)
+                EmptySomeViewHolder(view)
+            }
+            ExploreType.TYPE_EMPTY_ALL -> {
+                val view = inflater.inflate(R.layout.explore_emptystate_all, parent, false)
+                EmptyAllViewHolder(view)
             }
             else -> throw IllegalArgumentException("Unknown view type: $viewType")
         }
