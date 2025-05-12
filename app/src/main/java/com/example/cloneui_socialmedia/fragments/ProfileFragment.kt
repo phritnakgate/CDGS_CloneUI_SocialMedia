@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -107,7 +108,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             //Capture Image
             val captureImageTab = bottomSheetView.findViewById<ConstraintLayout>(R.id.constraintlayout_profile_bottomdrawer_editprofile_capture)
             captureImageTab.setOnClickListener {
-                val imageFile = File(requireContext().cacheDir, "captured_image.jpg")
+                //Clear previous image
+                val cacheDir = requireContext().cacheDir
+                cacheDir.listFiles()?.forEach {
+                    if (it.name.startsWith("captured_image_")) {
+                        it.delete()
+                    }
+                }
+                val imageFile = File(cacheDir, "captured_image_${System.currentTimeMillis()}.jpg")
                 cameraImageUri = FileProvider.getUriForFile(
                     requireContext(),
                     "${requireContext().packageName}.provider",
@@ -142,6 +150,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         }
     private val captureImageLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { result ->
+        //Log.d("CAPTURE", "Capture Image URI: $cameraImageUri")
         if (result && cameraImageUri != null) {
             Glide.with(this)
                 .load(cameraImageUri)
