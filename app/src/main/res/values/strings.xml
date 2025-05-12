@@ -49,4 +49,7 @@
     <string name="explore_relevant_question">Does this suggestion appeal to you?</string>
     <string name="explore_trending_title">Trending Post</string>
     <string name="explore_nothing_title">Nothing to show here :(</string>
+
+    <!-- Empty Page -->
+    <string name="empty_page_title">Nothing to show here :(</string>
 </resources>
