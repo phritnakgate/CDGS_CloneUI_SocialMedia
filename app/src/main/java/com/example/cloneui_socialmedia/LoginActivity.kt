@@ -70,6 +70,8 @@ class LoginActivity : AppCompatActivity() {
                             loginButton.isEnabled = true
                             // Show error message
                             Toast.makeText(this@LoginActivity, state.message, Toast.LENGTH_SHORT).show()
+                            // Reset the state to Idle
+                            loginViewModel.resetLoginState()
                         }
                     }
                 }

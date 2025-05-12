@@ -11,7 +11,7 @@ class LoginViewModel : ViewModel() {
 
     private val _loginState = MutableStateFlow<LoginState>(LoginState.Idle)
 
-    val onLoginState : StateFlow<LoginState> = _loginState //Used in MainActivity of Login Page
+    var onLoginState : StateFlow<LoginState> = _loginState //Used in MainActivity of Login Page
 
     fun login(email: String, password: String){
         viewModelScope.launch{
@@ -25,6 +25,10 @@ class LoginViewModel : ViewModel() {
                 _loginState.value = LoginState.Invalid("Invalid email or password")
             }
         }
+    }
+
+    fun resetLoginState() {
+        _loginState.value = LoginState.Idle
     }
 
 
